@@ -1,4 +1,5 @@
 import request from 'superagent'
+import Cookies from 'js-cookie'
 
 function createResourceRequest(data) {
 	return {
@@ -25,16 +26,22 @@ export function createResource(data) {
 
 	return dispatch => {
 
+		let csrftoken = Cookies.get('csrftoken')
+		console.log(csrftoken)
+
 		dispatch(createResourceRequest(data))
 
 		return request
-		.post('/add')
+		.post('/add/')
+		.type('form')
 		.send(data)
 		.set('Accept', 'application/json')
+		.set('X-CSRFToken', csrftoken)
 		.end((err, res) => {
 			if (err) {
 				dispatch(createResourceFailure(err, data))
 			} else {
+				console.log(res, res.body)
 				dispatch(createResourceSuccess(res.body))
 			}
 		})

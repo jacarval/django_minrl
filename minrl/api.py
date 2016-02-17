@@ -7,6 +7,7 @@ def add_url(request):
 	if request.method != 'POST':
 		return HttpResponseBadRequest()
 
+	print request.POST
 	url = request.POST.get('url')
 	
 	if url is None or url == "":
