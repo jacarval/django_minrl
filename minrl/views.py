@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseBadRequest, HttpResponseServerError, HttpResponseNotFound, JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 import minrl.service as service
 import json
 
 # Create your views here.
-
+@ensure_csrf_cookie
 def index(request):
  	return render(request, 'minrl/index.html')
 

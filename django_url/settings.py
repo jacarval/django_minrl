@@ -20,8 +20,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "k5o1r=v243vd&@k$ywa5$7-_t0(!lqzh!vqs55qn+*un@ua$ch"
+POSTGRES_PASSWORD = get_env_variable('POSTGRES_PASSWORD')
+SECRET_KEY = get_env_variable('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -118,7 +118,7 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['localhost','.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -135,18 +135,11 @@ STATICFILES_DIRS = [
 # Webpack stuff
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
     }
 }
 
-if not DEBUG:
-    WEBPACK_LOADER = {
-        'DEFAULT': {
-            'BUNDLE_DIR_NAME': 'dist/',
-            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json')
-        }
-    }
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
