@@ -8,6 +8,8 @@ def add_url(url):
 	key = None
 	while key is None or key in [entry.key for entry in Url.objects.all()]:
 		key = generate_key()
+	if not (url[:7] == 'http://' or url[:8] == 'https://'):
+		url = 'https://' + url
 	new_entry = Url(key=key,url=url)
 	new_entry.save()
 	return key

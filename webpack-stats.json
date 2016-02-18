@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"client":[{"name":"client.js","publicPath":"http://localhost:3000/assets/bundles/client.js","path":"/Users/oak/Desktop/itv/flocab/django_url/assets/bundles/client.js"},{"name":"0.728b29d2e846c09c962a.hot-update.js","publicPath":"http://localhost:3000/assets/bundles/0.728b29d2e846c09c962a.hot-update.js","path":"/Users/oak/Desktop/itv/flocab/django_url/assets/bundles/0.728b29d2e846c09c962a.hot-update.js"}]},"publicPath":"http://localhost:3000/assets/bundles/"}
+{"status":"compiling","publicPath":"http://localhost:3000/assets/bundles/"}

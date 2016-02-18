@@ -4,12 +4,10 @@ var BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
   context: __dirname,
-  devtool: 'eval',
+  devtool: 'source-map',
 
   entry: {
     client: [
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
       path.resolve(__dirname, 'assets', 'js', 'index'),
     ],
     vendor: [
@@ -20,9 +18,8 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, 'assets', 'bundles'),
-    filename: '[name].js',
-    publicPath: 'http://localhost:3000/assets/bundles/',
+    path: path.resolve(__dirname, 'assets', 'dist'),
+    filename: '[name].js'
   },
 
   resolve: {
@@ -31,14 +28,17 @@ module.exports = {
   },
 
   plugins: [
-    new BundleTracker({filename: './webpack-stats.json'}),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-
+    new BundleTracker({filename: './webpack-stats-prod.json'}),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+    }}),
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.UglifyJsPlugin({mangle: false, minimize: true})
   ],
   module: {
     loaders: [
-      { test: /\.(js|jsx)$/, loaders: ['react-hot', 'babel-loader'], exclude: /node_modules/, include: path.resolve(__dirname, 'assets') },
+      { test: /\.(js|jsx)$/, loaders: ['babel-loader'], exclude: /node_modules/, include: path.resolve(__dirname, 'assets') },
       { test: /\.css$/, loader: "style!css" },
       { test: /\.(eot|svg|ttf|woff|woff2)/, loader: 'file-loader?name=fonts/[name].[ext]' }
     ]

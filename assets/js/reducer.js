@@ -20,6 +20,10 @@ export default function reducer(state = INITIAL_STATE, action) {
 				fetching: false,
 				error: action.error
 			})
+		case 'UPDATE_FORM_INPUT':
+			return Object.assign({}, state, {
+				input: action.input
+			})
 	}
 	return state
 }

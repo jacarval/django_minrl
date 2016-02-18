@@ -22,12 +22,18 @@ function createResourceFailure(data) {
 	}
 }
 
+export function updateFormInput(input) {
+	return {
+		type: 'UPDATE_FORM_INPUT',
+		input
+	}
+}
+
 export function createResource(data) {
 
 	return dispatch => {
 
 		let csrftoken = Cookies.get('csrftoken')
-		console.log(csrftoken)
 
 		dispatch(createResourceRequest(data))
 
@@ -41,7 +47,6 @@ export function createResource(data) {
 			if (err) {
 				dispatch(createResourceFailure(err, data))
 			} else {
-				console.log(res, res.body)
 				dispatch(createResourceSuccess(res.body))
 			}
 		})
