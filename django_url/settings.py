@@ -20,8 +20,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-POSTGRES_PASSWORD = get_env_variable('POSTGRES_PASSWORD')
-SECRET_KEY = get_env_variable('SECRET_KEY')
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = "k5o1r=v243vd&@k$ywa5$7-_t0(!lqzh!vqs55qn+*un@ua$ch"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,16 +75,8 @@ WSGI_APPLICATION = 'django_url.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'minrl',
-        'USER': 'admin',
-        'PASSWORD': 'password123',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config()
 
 AUTH_PASSWORD_VALIDATORS = (
     {
