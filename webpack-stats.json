@@ -1,1 +1,1 @@
-{"status":"compiling","publicPath":"http://localhost:3000/assets/bundles/"}
+{"status":"done","chunks":{"client":[{"name":"client.js","publicPath":"http://localhost:3000/assets/bundles/client.js","path":"/Users/oak/Desktop/itv/flocab/django_url/assets/bundles/client.js"}],"vendor":[{"name":"vendor.js","publicPath":"http://localhost:3000/assets/bundles/vendor.js","path":"/Users/oak/Desktop/itv/flocab/django_url/assets/bundles/vendor.js"}]},"publicPath":"http://localhost:3000/assets/bundles/"}
