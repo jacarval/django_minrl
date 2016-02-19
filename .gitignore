@@ -3,3 +3,5 @@ venv
 staticfiles
 env
 node_modules
+webpack-stats-prod.json
+webpack-stats.json
